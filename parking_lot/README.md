@@ -18,3 +18,23 @@ Note: This is an intentionally vague exercise, and you will have to make a numbe
 - b) Any extra assumptions you madeand their impacts to the code or the code design 
 - c) How you would push the code from a) to a production environment
 
+
+## Assumptions
+- Currently the parking lot is instantiated in `app/core.py`, this is not ideal for a few reasons
+    - Not scalable. Wont work if mupltiple containers/instances are deployed.
+    - Not persistent. If application crashes state is wiped.
+    - Cannot handle concurrency. If multiple requests are receivec simultaneously, they could end up with inconsistent states.
+The ideal scenario would be allowing each instance to connect to a database, in this case I'd recommend a NoSQL solution such as DynamoDB or MongoDB.
+
+- We are currently only keeping the aggregate state of the parking lot i.e. number of spots available by type. In a production scenario we would need to map parking lot spots to cars (via license plate) in order to ensure compliance with lot rules.
+
+## Deployment
+- Deploy versioned containers into a kubernetes environment or refactor to utilize serverless framework to deploy infrastructure as code in and AWS Lambda/API Gateway environment or Google Cloud equivalent.
+
+### Instructions
+```
+docker build -t "swagger-ui" -f Dockerfile .
+docker run -p 8296:8296 swagger-ui     
+```
+- Visit http://localhost:8296/api/v1/ui/ to see/test swagger ui and see local routes
+![Swagger UI](assets/swagger_ui.png)

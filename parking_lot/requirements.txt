@@ -1,0 +1,7 @@
+flask==2.2.5
+flask_cors==4.0.0
+flask_restful==0.3.10
+gunicorn==21.2.0
+connexion[flask]==2.14.2
+swagger-ui-bundle==1.1.0
+pytest==7.4.3

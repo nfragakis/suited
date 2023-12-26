@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  title: Parking Lot API
+  version: 1.0.0
+
+basePath: /api/v1
+paths:
+  /available_spots:
+    get:
+      operationId: app.flask.routes.available_spots
+      summary: Get the number of available spots
+      responses:
+        '200':
+          description: Successful operation
+  /total_spots:
+    get:
+      operationId: app.flask.routes.total_spots
+      summary: Get the total number of spots
+      responses:
+        '200':
+          description: Successful operation
+  /park_vehicle/{vehicle_type}:
+    post:
+      operationId: app.flask.routes.park_vehicle
+      summary: Park a vehicle
+      parameters:
+        - name: vehicle_type
+          in: path
+          description: Type of vehicle (car, motorcycle, or van)
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid vehicle type
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+        '409':
+          description: No spots available
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  /is_full:
+    get:
+      operationId: app.flask.routes.is_full
+      summary: Check if the parking lot is full
+      responses:
+        '200':
+          description: Successful operation
+  /is_empty:
+    get:
+      operationId: app.flask.routes.is_empty
+      summary: Check if the parking lot is empty
+      responses:
+        '200':
+          description: Successful operation
+  /van_spots:
+    get:
+      operationId: app.flask.routes.van_spots
+      summary: Get the number of spots vans take up
+      responses:
+        '200':
+          description: Successful operation
+  /vehicle_spots/{vehicle_type}:
+    get:
+      operationId: app.flask.routes.vehicle_spots
+      summary: Get the number of spots for a specific vehicle
+      parameters:
+        - name: vehicle_type
+          in: path
+          description: Type of vehicle (car, motorcycle, or van)
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid vehicle type
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
