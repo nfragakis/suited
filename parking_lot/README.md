@@ -34,7 +34,8 @@ The ideal scenario would be allowing each instance to connect to a database, in 
 ### Instructions
 ```
 docker build -t "swagger-ui" -f Dockerfile .
-docker run -p 8296:8296 swagger-ui     
+docker run -p 8296:8296 swagger-ui
+pytest tests/test_lot.py
 ```
 - Visit http://localhost:8296/api/v1/ui/ to see/test swagger ui and see local routes
 ![Swagger UI](assets/swagger_ui.png)
