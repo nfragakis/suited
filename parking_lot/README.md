@@ -21,10 +21,12 @@ Note: This is an intentionally vague exercise, and you will have to make a numbe
 
 ## Assumptions
 - Currently the parking lot is instantiated in `app/core.py`, this is not ideal for a few reasons
-    - Not scalable. Wont work if mupltiple containers/instances are deployed.
+    - Not scalable. Wont synch the state if mupltiple containers/instances are deployed.
     - Not persistent. If application crashes state is wiped.
-    - Cannot handle concurrency. If multiple requests are receivec simultaneously, they could end up with inconsistent states.
-The ideal scenario would be allowing each instance to connect to a database, in this case I'd recommend a NoSQL solution such as DynamoDB or MongoDB.
+    - Cannot handle concurrency. If multiple requests are received simultaneously they could end up with inconsistent states.
+The ideal scenario would be allowing each container instance to connect to a database, in this case I'd recommend a NoSQL solution such as DynamoDB or MongoDB. We would also need to add a parameter that represents the id of each parking lot in a multi-lot situation.
+
+- Currently parking lot is initialized at 5 motorcycle spots, 10 compact spots, and 20 regular spots. This would need to be adjusted per parking lot.
 
 - We are currently only keeping the aggregate state of the parking lot i.e. number of spots available by type. In a production scenario we would need to map parking lot spots to cars (via license plate) in order to ensure compliance with lot rules.
 
