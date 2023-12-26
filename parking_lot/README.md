@@ -41,3 +41,11 @@ pytest tests/test_lot.py
 ```
 - Visit http://localhost:8296/api/v1/ui/ to see/test swagger ui and see local routes
 ![Swagger UI](assets/swagger_ui.png)
+
+- Code Breakdown
+    - `app/`: primary Parking Lot logic and flask api
+    - `assets/`: images for readme
+    - `configs/`: openAPI yaml schema
+    - `tests/`: suite of basic test cases
+    - `Dockerfile`: dockerfile to containerize API application
+    - `run.py`: entrypoint for flask app
